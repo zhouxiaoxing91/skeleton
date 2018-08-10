@@ -5,9 +5,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * Unit test for simple App.
+ * Unit test for simple ProviderApplication.
  */
-public class AppTest 
+public class ProviderApplicationTest
 {
     /**
      * Rigorous Test :-)

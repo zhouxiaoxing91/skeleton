@@ -16,7 +16,7 @@
     <module>skeleton-mapper</module>
     <module>skeleton-model</module>
     <module>skeleton-api</module>
-    <module>skeleton-common</module>
+    <module>skeleton-third</module>
   </modules>
 
   <properties>
@@ -35,6 +35,17 @@
     <version>1.5.6.RELEASE</version>
     <relativePath/>
   </parent>
+
+
+  <dependencies>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 
   <dependencyManagement>
@@ -368,6 +379,27 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+
+      <plugin>
+        <!-- The plugin rewrites your manifest -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <!--<version>${springboot.version}</version>-->
+        <configuration>
+          <!-- 指定该Main Class为全局的唯一入口 -->
+          <mainClass>com.nancy.ProviderApplication</mainClass>
+          <!--<layout>ZIP</layout>-->
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <!--可以把依赖的包都打包到生成的Jar包中-->
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 </project>
