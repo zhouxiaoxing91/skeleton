@@ -2,6 +2,7 @@ package com.nancy.handler;
 
 import com.nancy.response.DataResult;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +17,11 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(value = Exception.class)
   @ResponseBody
-  public DataResult jsonErrorHandler(HttpServletRequest req, Exception e){
+  public DataResult jsonErrorHandler(HttpServletRequest request, Exception e){
     DataResult response = new DataResult();
     response.setErrorCode("10000");
-    response.setErrorDesc("异常");
-    // todo
-    response.setData("");
+    String errResult = ExceptionUtils.getStackTrace(e) ;
+    response.setErrorDesc(errResult);
     log.info("异常", e);
     return response;
   }
