@@ -47,7 +47,7 @@
 
     </dependencies>
     <build>
-        <!--<finalName>skeleton-provider</finalName>-->
+        <finalName>skeleton-provider</finalName>
         <plugins>
             <plugin>
                 <!-- The plugin rewrites your manifest -->
