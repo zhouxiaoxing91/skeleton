@@ -24,7 +24,7 @@
     <dependencies>
         <dependency>
             <groupId>com.nancy</groupId>
-            <artifactId>skeleton-common</artifactId>
+            <artifactId>skeleton-model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--<dependency>-->

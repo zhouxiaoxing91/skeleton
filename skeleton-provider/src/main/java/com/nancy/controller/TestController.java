@@ -2,14 +2,15 @@ package com.nancy.controller;
 
 import com.github.pagehelper.Page;
 import com.nancy.entity.Book;
+import com.nancy.request.PageVo;
 import com.nancy.response.DataResult;
 import com.nancy.service.TestService;
-import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("test")
@@ -29,9 +30,9 @@ public class TestController {
     }
 
     @PostMapping("bookAll")
-    private DataResult bookAll(){
+    private DataResult bookAll(@RequestBody @Validated PageVo pageVo){
         DataResult dataResult = new DataResult() ;
-        Page<Book> books = testService.queryAllBook(1, 2) ;
+        Page<Book> books = testService.queryAllBook(pageVo.getPageNo(), pageVo.getPageSize()) ;
         dataResult.setData(books);
         return dataResult ;
     }
