@@ -25,7 +25,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetPackage="com.nancy.entity" targetProject="../../java">
+        <javaModelGenerator targetPackage="com.nancy.test.entity" targetProject="../../java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -34,7 +34,7 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.nancy.mapper" targetProject="../../java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.nancy.test.mapper" targetProject="../../java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
