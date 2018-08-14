@@ -4,7 +4,7 @@ server:
 spring:
     datasource:
         name: test
-        url: jdbc:mysql://127.0.0.1:3306/test
+        url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
         username: root
         password: root
         # 使用druid数据源
@@ -29,9 +29,16 @@ mybatis:
   mapper-locations: classpath:resources/mapping/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
   type-aliases-package: com.nancy.entity  # 注意：对应实体类的路径
 
-#pagehelper分页插件
+## pagehelper分页插件
 pagehelper:
     helperDialect: mysql
     reasonable: true
     supportMethodsArguments: true
     params: count=countSql
+    page-size-zero: true
+
+## tk.mybatis
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+  not-empty: true
+  identity: MYSQL
