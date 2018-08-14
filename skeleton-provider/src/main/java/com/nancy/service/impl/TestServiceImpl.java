@@ -27,4 +27,9 @@ public class TestServiceImpl implements TestService {
         List<Book> books = bookMapper.selectAllBook()  ;
         return page ;
     }
+
+    @Override
+    public List<Book> searchName(String name){
+        return bookMapper.searchName(name);
+    }
 }

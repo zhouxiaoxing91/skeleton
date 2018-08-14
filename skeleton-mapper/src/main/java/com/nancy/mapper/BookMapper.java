@@ -1,6 +1,7 @@
 package com.nancy.mapper;
 
 import com.nancy.entity.Book;
+import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -55,5 +56,6 @@ public interface BookMapper extends Mapper<Book> {
 //    int updateByPrimaryKey(Book record);
 
     List<Book> selectAllBook();
+    List<Book> searchName(@Param("name") String  name);
 
 }

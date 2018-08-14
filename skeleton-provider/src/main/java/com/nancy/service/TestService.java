@@ -12,4 +12,6 @@ public interface TestService {
 
     public Page<Book> queryAllBook(Integer pageNo, Integer pageSize) ;
 
+    public List<Book> searchName(String name);
+
 }

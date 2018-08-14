@@ -21,4 +21,15 @@
   <select id="selectAllBook" resultMap="BaseResultMap">
     select  <include refid="Base_Column_List"/> from book
   </select>
+
+  <select id="searchName"  resultMap="BaseResultMap"  parameterType="java.lang.String">
+    select  <include refid="Base_Column_List"/> from book
+    <where>
+      <if test="name != null and name != ''">
+           name LIKE '%${name}%'
+      </if>
+    </where>
+
+    ORDER BY id
+  </select>
 </mapper>
