@@ -1,17 +1,14 @@
 package com.nancy.service;
 
 
-import com.github.pagehelper.Page;
-import com.nancy.entity.Book;
-
-import java.util.List;
+import com.nancy.response.DataResult;
 
 public interface TestService {
 
-    public Book queryBook();
+    public DataResult queryBook();
 
-    public Page<Book> queryAllBook(Integer pageNo, Integer pageSize) ;
+    public DataResult queryAllBook(Integer pageNo, Integer pageSize) ;
 
-    public List<Book> searchName(String name);
+    public DataResult searchName(String name);
 
 }
