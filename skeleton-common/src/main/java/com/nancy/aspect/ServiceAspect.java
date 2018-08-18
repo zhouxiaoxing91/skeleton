@@ -2,17 +2,21 @@ package com.nancy.aspect;
 
 import com.alibaba.fastjson.JSON;
 import com.nancy.response.DataResult;
+import com.nancy.utils.CheckSign;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 //申明是个切面
@@ -51,10 +55,12 @@ public class ServiceAspect {
         DataResult ds ;
         try {
             // 签名校验
-            if( !checkSign() ){
+            if( !checkSign(joinPoint) ){
                 ds = new DataResult() ;
                 ds.setErrorCode("99999");
-                ds.setErrorDesc("签名校验异常");
+                ds.setErrorDesc("签名校验失败");
+                ds.setElapsedMilliseconds(System.currentTimeMillis() - timeTrace.get()) ;
+                log.error("签名校验失败", new Exception("签名校验失败"));
                 return ds ;
             }
 
@@ -89,7 +95,14 @@ public class ServiceAspect {
         log.info("--------------返回内容----------------");
     }
 
-    private boolean checkSign(){
+    private boolean checkSign(ProceedingJoinPoint joinPoint){
+        MethodSignature sign = (MethodSignature) joinPoint.getSignature();
+        Method method = sign.getMethod();
+        if ( method.isAnnotationPresent(CheckSign.class) ) {
+            CheckSign checkSign = method.getAnnotation(CheckSign.class) ;
+            // 参数
+            Object[] args = joinPoint.getArgs() ;
+        }
         // TODO 签名校验
         return true ;
     }
